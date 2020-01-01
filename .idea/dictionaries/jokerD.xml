@@ -3,8 +3,10 @@
     <words>
       <w>endblock</w>
       <w>endfor</w>
+      <w>momentjs</w>
       <w>revindex</w>
       <w>strftime</w>
+      <w>utcnow</w>
     </words>
   </dictionary>
 </component>

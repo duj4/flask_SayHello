@@ -40,6 +40,15 @@
     <script type="text/javascript" src="{{ url_for('static', filename='js/popper.min.js') }}"></script>
     <script type="text/javascript" src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
     <script type="text/javascript" src="{{ url_for('static', filename='js/script.js') }}"></script>
+    <!--为了使用Moment.js，需要在基模板中加载Moment.j资源-->
+    <!--moment.include_moment()方法用来加载Moment.js的JS资源-->
+    <!--moment.include_jquery()用来夹杂jQuery-->
+    <!--默认从CDN加载，如果指定了local_js的source，则会从本地加载，相应的资源可以从https://momentjs.com下载-->
+    <!--从官网下载的moment.min.js文件仅包含英文的时间日期字符，如果要使用其他语言，则需要下载moment-with-locales.min.js文件-->
     {{ moment.include_moment(local_js=url_for('static', filename='js/moment-with-locales.min.js')) }}
+    <!--Flask-Moment默认以英文显示时间，可以传入区域字符串到locale()方法来更改显示语言-->
+    <!--{{ moment.locale('zh-cn') }}-->
+    <!--或者进行语言自动探测-->
+    <!--{{ moment.locale(auto_detect=True) }}-->
 </body>
 </html>
