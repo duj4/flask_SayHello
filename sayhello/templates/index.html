@@ -1,10 +1,41 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends 'base.html' %}
+{% from 'macros.html' import form_field %}
 
-</body>
-</html>
+{% block content %}
+    <div class="hello-form">
+        <!--如果用户单击了向下按钮，会在URL中添加URL片段，比如“#bottom”，它指向页面底部的a元素（id为bottom），所以会进行跳转。
+            当表单被提交后，页面加载时仍然会跳转到URL片段响应的位置，为了避免这个行为，可以显示地使用action属性指定表单提交的目标URL，
+            使用request.full_path获取没有URL片段的当前请求URL-->
+        <form method="post" action="{{request.full_path}}">
+            {{ form.csrf_token }}
+            <div class="form-group required">
+                {{ form_field(form.name, class='form-control') }}
+            </div>
+            <div class="form-group required">
+                {{ form_field(form.body, class='form-control') }}
+            </div>
+            {{ form.submit(class='btn btn-secondary') }}
+        </form>
+    </div>
+    <h5>
+        {{ messages|length }} messages
+        <small class="float-right">
+            <a href="#bottom" title="Go Bottom">&darr;</a>
+        </small>
+    </h5>
+    <div class="list-group">
+        {% for message in messages %}
+            <a class="list-group-item list-group-item-action flex-column">
+                <div class="d-flex w-100 justify-content-between">
+                    <h5 class="mb-1 text-success">{{ message.name}}
+                        <small class="text-muted">#{{ loop.revindex }}</small>
+                    </h5>
+                    <small>
+                        {{ message.timestamp.strftime('%Y/%m/%d %H:%M') }}
+                    </small>
+                </div>
+                <p class="mb-1">{{ message.body }}</p>
+            </a>
+        {% endfor %}
+    </div>
+{% endblock%}
