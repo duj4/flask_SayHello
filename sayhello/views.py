@@ -14,5 +14,6 @@ def index():
         db.session.commit()
         flash('Your message have been sent to the world!')
         return redirect(url_for('index'))
+
     messages = Message.query.order_by(Message.timestamp.desc()).all()
     return render_template('index.html', form=form, messages=messages)
