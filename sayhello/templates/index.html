@@ -39,7 +39,7 @@
                     </h5>
                     <small data-toggle="tooltip" data-placement="top" data-delay="500"
                            data-timestamp="{{ message.timestamp.strftime('%Y-%m-%dT%H:%M:%SZ') }}">
-                        {{ moment(message.timestamp.fromNow(refresh=True)) }}
+                        {{ moment(message.timestamp).fromNow(refresh=True) }}
                     </small>
                 </div>
                 <p class="mb-1">{{ message.body }}</p>
