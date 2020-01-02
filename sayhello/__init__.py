@@ -20,3 +20,5 @@ app.jinja_env.lstrip_blocks = True # 删除jinja2语句所在行之前的空格�
 db = SQLAlchemy(app)
 bootstrap = Bootstrap(app)
 moment = Moment(app)
+
+from sayhello import views, errors, commands
