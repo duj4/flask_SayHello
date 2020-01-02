@@ -3,11 +3,6 @@ import sys
 
 from sayhello import app
 
-# basic config
-DEBUG = True
-HOST = '0.0.0.0'
-PORT = '5000'
-
 # SQLite URI compatible
 WIN = sys.platform.startswith('win')
 if WIN:
